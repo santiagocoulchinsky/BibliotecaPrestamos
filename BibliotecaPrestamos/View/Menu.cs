@@ -18,7 +18,8 @@ namespace BibliotecaPrestamos.View
             Console.WriteLine("1- Nuevo Libro. ");
             Console.WriteLine("2- Nuevo Lector. ");
             Console.WriteLine("3- Nuevo Préstamo. ");
-            Console.WriteLine("4- Salir. ");
+            Console.WriteLine("4- Registro de préstamos. ");
+            Console.WriteLine("5- Salir. ");
             Console.Write("\nOpción: ");
             opcion = int.Parse(Console.ReadLine());
             Console.WriteLine("-----------------");
@@ -44,6 +45,12 @@ namespace BibliotecaPrestamos.View
                     break;
 
                 case 4:
+
+                    prestamoVista.VerPrestamos();
+
+                    break;
+
+                case 5:
                     Environment.Exit(0);
                     break;
 

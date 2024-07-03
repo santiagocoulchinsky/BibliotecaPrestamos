@@ -42,13 +42,13 @@ namespace BibliotecaPrestamos.Repositorio
 
         public List<T> VerTodos()
         {
-            List<T> lectores;
+            List<T> libros;
 
             using (AppDbContext context = new AppDbContext())
             {
-                lectores = context.Set<T>().ToList();
+                libros = context.Set<T>().ToList();
             }
-            return lectores;
+            return libros;
         }
 
         public T Obtener(int id)

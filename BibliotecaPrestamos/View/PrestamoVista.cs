@@ -1,34 +1,36 @@
-﻿using BibliotecaPrestamos.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BibliotecaPrestamos.Controller;
+using BibliotecaPrestamos.Model;
 
 namespace BibliotecaPrestamos.View
 {
     public class PrestamoVista
     {
+
+        PrestamoController prestamoController = new PrestamoController();
         public void Asignar()
         {
+            Prestamo presta = new Prestamo();
+
             Console.Write("Libro nro: ");
-            int i = int.Parse(Console.ReadLine());
+            presta.LibroId = int.Parse(Console.ReadLine());
             Console.Write("Se asigna a: ");
-            int j = int.Parse(Console.ReadLine());
+            presta.LectorId = int.Parse(Console.ReadLine());
             Console.WriteLine();
 
-            using (var context = new AppDbContext())
+            prestamoController.CargarPrestamo(presta);
+        }
+
+        public void VerPrestamos()
+        {
+
+            var lista = prestamoController.ListarPrestamos();
+
+            foreach (var item in lista)
             {
-                var lec = context.Lectores
-                    .Where(x => x.Id == j)
-                    .Single();
-
-                Prestamo asigna = new Prestamo();
-                asigna.LibroId = i;    
-                lec.Libros.Add(asigna);
-
-                context.SaveChanges();
+                Console.WriteLine($"El libro: {item.Libro.Titulo}, lo tiene: {item.Lector.Nombre}.");
             }
+            Console.WriteLine("-----------------");
+
         }
     }
 }

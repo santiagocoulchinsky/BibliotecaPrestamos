@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BibliotecaPrestamos.Model
 {
-    class Lector : BaseEntidad
+    public class Lector : BaseEntidad
     {
         public Lector()
         {
