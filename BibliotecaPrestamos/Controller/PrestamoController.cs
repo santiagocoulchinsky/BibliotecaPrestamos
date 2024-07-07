@@ -28,5 +28,19 @@ namespace BibliotecaPrestamos.Controller
             }
           
         }
+
+        public Prestamo ObtenerUno (int id)
+        {
+            Prestamo obj;
+            using (var context = new AppDbContext())
+            {
+                obj = context.Set<Prestamo>()
+                    .Where(x => x.LibroId == id)
+                    .OrderBy(x => x.LibroId)
+                    .Include(x => x.Lector)
+                    .Last();
+            }
+            return obj;
+        }
     }
 }
